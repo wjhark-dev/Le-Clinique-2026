@@ -5,6 +5,7 @@ import './App.css';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import CreateChallenge from './pages/CreateChallenge';
 
 function LandingPage() {
   const [email, setEmail] = useState('');
@@ -122,6 +123,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/create-challenge" element={<CreateChallenge />} />
       </Routes>
     </Router>
   );

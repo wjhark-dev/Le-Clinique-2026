@@ -195,3 +195,54 @@
       grid-template-columns: 1fr;
     }
   }
+  /* Challenge Cards */
+.challenges-list {
+    margin-top: 30px;
+  }
+  
+  .challenge-card {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .challenge-card:hover {
+    border-color: #48bb78;
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .challenge-card h3 {
+    color: #2d3748;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+  }
+  
+  .challenge-type {
+    display: inline-block;
+    background: #48bb78;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .challenge-description {
+    color: #4a5568;
+    margin: 15px 0;
+    line-height: 1.5;
+  }
+  
+  .challenge-dates {
+    color: #718096;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }

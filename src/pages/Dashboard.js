@@ -6,6 +6,7 @@ import './Auth.css';
 function Dashboard() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [challenges, setChallenges] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +21,17 @@ function Dashboard() {
       navigate('/login');
     } else {
       setUser(user);
+      
+      // Fetch user's challenges
+      const { data: challengesData } = await supabase
+        .from('challenges')
+        .select('*')
+        .eq('creator_id', user.id)
+        .order('created_at', { ascending: false });
+      
+      if (challengesData) {
+        setChallenges(challengesData);
+      }
     }
     setLoading(false);
   };
@@ -49,23 +61,40 @@ function Dashboard() {
         </div>
 
         <div className="dashboard-content">
-          <h2>Your Fitness Challenges</h2>
-          <p className="coming-soon">Challenge creation coming soon! 🚀</p>
+  <h2>Your Challenges</h2>
+  
+  <button 
+    onClick={() => window.location.href = '/create-challenge'}
+    className="auth-button"
+    style={{ marginBottom: '30px', width: 'auto', padding: '12px 30px' }}
+  >
+    + Create New Challenge
+  </button>
           
-          <div className="placeholder-features">
-            <div className="feature-box">
-              <h3>📊 Active Challenges</h3>
-              <p>0 challenges</p>
-            </div>
-            <div className="feature-box">
-              <h3>👥 Your Teams</h3>
-              <p>0 teams</p>
-            </div>
-            <div className="feature-box">
-              <h3>🏆 Total Points</h3>
-              <p>0 points</p>
-            </div>
-          </div>
+  <div className="challenges-list">
+  {challenges.length === 0 ? (
+    <p style={{ color: '#718096', fontStyle: 'italic' }}>
+      No challenges yet. Create your first challenge above!
+    </p>
+  ) : (
+    challenges.map((challenge) => (
+      <div key={challenge.id} className="challenge-card">
+        <h3>{challenge.name}</h3>
+        <p className="challenge-type">
+          {challenge.challenge_type.charAt(0).toUpperCase() + challenge.challenge_type.slice(1)}
+        </p>
+        {challenge.description && (
+          <p className="challenge-description">{challenge.description}</p>
+        )}
+        <div className="challenge-dates">
+          <span>📅 {new Date(challenge.start_date).toLocaleDateString()}</span>
+          <span> → </span>
+          <span>{new Date(challenge.end_date).toLocaleDateString()}</span>
+        </div>
+      </div>
+    ))
+  )}
+</div>
         </div>
 
         <button onClick={handleLogout} className="logout-button">
