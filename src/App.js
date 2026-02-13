@@ -41,7 +41,7 @@ function LandingPage() {
       <header className="hero">
         <div className="container">
           <h1>Lé Clinique 2026</h1>
-          <p className="tagline">Version 2: The Davis-Vega Wedding Trim / Dad Bod Aversion Protocol</p>
+          <p className="tagline">Version 2: Dad Bod Aversion Protocol</p>
           
           <div className="hero-description">
             <p>
